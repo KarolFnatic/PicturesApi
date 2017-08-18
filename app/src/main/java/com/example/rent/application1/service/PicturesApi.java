@@ -11,9 +11,6 @@ import retrofit2.http.GET;
 public interface PicturesApi {
 
     @GET("list")
-    Call<List<Picture>> getAllPictures();
-
-    @GET("list")
     Observable<List<Picture>> getAllPicturesRxJava();
 
 }

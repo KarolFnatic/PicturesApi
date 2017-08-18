@@ -5,9 +5,6 @@ public class Picture {
     private String filename;
     private String author;
 
-    public Picture() {
-    }
-
     public String getFilename() {
         return filename;
     }
