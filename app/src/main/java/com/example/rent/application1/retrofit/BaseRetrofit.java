@@ -7,15 +7,11 @@ import com.google.gson.GsonBuilder;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by RENT on 2017-08-17.
- */
-
 public class BaseRetrofit {
     private static String ENDPOINT = "http://10.40.21.186:3000/";
 
     private final Retrofit retrofit;
-    private final PicturesApi flowersApi;
+    private final PicturesApi picturesApi;
 
     public BaseRetrofit() {
         Gson gson = new GsonBuilder()
@@ -29,6 +25,6 @@ public class BaseRetrofit {
                 //.addCallAdapterFactory(RxJava2CallAdapterFactory.create())//potrzebne aby można było dać Observable zamiast Call
                 .build();
 
-        flowersApi = retrofit.create(PicturesApi.class);
+        picturesApi = retrofit.create(PicturesApi.class);
     }
 }

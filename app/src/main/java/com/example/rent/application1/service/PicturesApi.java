@@ -10,10 +10,10 @@ import retrofit2.http.GET;
 
 public interface PicturesApi {
 
-    @GET("/list.json")
+    @GET("list")
     Call<List<Picture>> getAllPictures();
 
-    @GET("/list.json")
+    @GET("list")
     Observable<List<Picture>> getAllPicturesRxJava();
 
 }
