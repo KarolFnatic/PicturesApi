@@ -3,16 +3,20 @@ package com.example.rent.application1;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.rent.application1.adapters.PictureListAdapter;
 import com.example.rent.application1.models.Picture;
 import com.example.rent.application1.service.PicturesApi;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -28,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
     private Retrofit retrofit;
     private PicturesApi picturesApi;
     private List<Picture> picturesList;
+    private PictureListAdapter pictureListAdapter;
+
+    @BindView(R.id.mainActivity_listView)
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +43,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         prepareRetrofit();
+        prepareAdapter();
         getPicturesRxJava();
 
+    }
+
+    private void prepareAdapter() {
+        picturesList = new ArrayList<>();
+        pictureListAdapter = new PictureListAdapter(this, picturesList, this);
+        listView.setAdapter(pictureListAdapter);
     }
 
     private void prepareRetrofit() {
@@ -77,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
 
     @NonNull
     private Gson getGson() {

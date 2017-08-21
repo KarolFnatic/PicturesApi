@@ -5,6 +5,11 @@ public class Picture {
     private String filename;
     private String author;
 
+
+    public String getPhotoUrl() {
+        return "https://unsplash.it/" + filename;
+    }
+
     public String getFilename() {
         return filename;
     }
