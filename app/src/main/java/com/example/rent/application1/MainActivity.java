@@ -2,6 +2,9 @@ package com.example.rent.application1;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,6 +21,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
@@ -34,8 +38,9 @@ public class MainActivity extends AppCompatActivity {
     private List<Picture> picturesList;
     private PictureListAdapter pictureListAdapter;
 
-    @BindView(R.id.mainActivity_listView)
-    ListView listView;
+    @BindView(R.id.recyclerview)
+    RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void prepareAdapter() {
         picturesList = new ArrayList<>();
-        pictureListAdapter = new PictureListAdapter(this, picturesList, this);
-        listView.setAdapter(pictureListAdapter);
+        pictureListAdapter = new PictureListAdapter(picturesList, getSupportFragmentManager());
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(pictureListAdapter);
     }
 
     private void prepareRetrofit() {
@@ -89,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete() {
                         Log.d("RxJava", "DONE!");
                         showToast("DONE!");
+                        pictureListAdapter.notifyDataSetChanged();
                     }
                 });
     }
