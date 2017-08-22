@@ -5,12 +5,29 @@
     android:padding="8dp"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/picture_item_imageView"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:src="@mipmap/ic_launcher"
-        />
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/picture_item_progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/picture_item_imageView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@mipmap/ic_launcher"
+            />
+
+
+    </FrameLayout>
+
+
 
     <TextView
         android:id="@+id/picture_item_author"
