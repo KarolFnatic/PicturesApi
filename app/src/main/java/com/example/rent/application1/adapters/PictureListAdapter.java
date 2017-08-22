@@ -1,5 +1,7 @@
 package com.example.rent.application1.adapters;
 
+import android.content.Intent;
+import android.os.Parcel;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -37,17 +39,16 @@ public class PictureListAdapter extends RecyclerView.Adapter<PictureListAdapter.
     public void onBindViewHolder(PictureViewHolder holder, int position) {
         final Picture picture = pictureList.get(position);
 
+
         holder.author.setText(picture.getAuthor());
         Picasso.with(holder.icon.getContext())
                 .load(getThumbnailUrl(picture))
-//                .centerCrop()
                 .into(holder.icon);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DetailsFragment detailsFragment = DetailsFragment.newInstance();
+                DetailsFragment detailsFragment = DetailsFragment.newInstance(picture);
                 detailsFragment.show(fragmentManager,"");
-
             }
         });
 
