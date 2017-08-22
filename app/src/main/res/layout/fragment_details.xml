@@ -5,11 +5,12 @@
     tools:context="com.example.rent.application1.DetailsFragment">
 
     <ImageView
+        android:id="@+id/fragment_details_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@mipmap/ic_launcher"/>
     <TextView
-        android:id="@+id/fragment_details_authorTextView"
+        android:id="@+id/fragment_details_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
