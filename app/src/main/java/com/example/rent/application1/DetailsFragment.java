@@ -52,10 +52,11 @@ public class DetailsFragment extends DialogFragment {
         Picture test = getArguments().getParcelable("test");
         author.setText(test.getAuthor());
         Picasso.with(getContext())
-                .load(getPhotoUrl(test))
+                .load(getPhotoUrl(test, 0.75f))
                 .into(image);
         return view;
     }
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -76,7 +77,6 @@ public class DetailsFragment extends DialogFragment {
             dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
-
     }
 
 }
