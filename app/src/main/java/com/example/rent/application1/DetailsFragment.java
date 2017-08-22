@@ -50,9 +50,9 @@ public class DetailsFragment extends DialogFragment {
         // Inflate the layout for this fragment
         ButterKnife.bind(this, view);
         Picture test = getArguments().getParcelable("test");
-        author.setText(test.getAuthor());
+        author.setText(test.getId() + " " + test.getAuthor() + " " + test.getHeight() + "x" + test.getWidth());
         Picasso.with(getContext())
-                .load(getPhotoUrl(test, 0.75f))
+                .load(getPhotoUrl(test, 0.5f))
                 .into(image);
         return view;
     }
