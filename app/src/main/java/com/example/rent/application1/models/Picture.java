@@ -52,9 +52,9 @@ public class Picture implements Parcelable{
     public static String getThumbnailUrl(Picture picture) {
         return "https://unsplash.it/300/200/?image=" + picture.getId();
     }
-
-    public static String getPhotoUrl(Picture picture) {
-        return "https://unsplash.it/"+ picture.getWidth()+ "/" + picture.getWidth() + "/?image=" + picture.getId();
+        //// TODO: 2017-08-22 scale
+    public static String getPhotoUrl(Picture picture, float scale) {
+        return "https://unsplash.it/"+ picture.getWidth() * scale + "/" + picture.getWidth() * scale + "/?image=" + picture.getId();
     }
 
     public String getFilename() {
