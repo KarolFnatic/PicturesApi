@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.rent.application1.models.Picture;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -31,7 +32,7 @@ public class DetailsFragment extends DialogFragment {
     TextView author;
 
     @BindView(R.id.fragment_details_image)
-    ImageView image;
+    PhotoView image;
 
 
     public static DetailsFragment newInstance(Picture picture) {
