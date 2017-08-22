@@ -5,9 +5,18 @@
     android:padding="8dp"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
         <ProgressBar
             android:id="@+id/picture_item_progressBar"
@@ -24,17 +33,38 @@
             android:src="@mipmap/ic_launcher"
             />
 
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="80dp"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimaryDark"/>
+
+        <TextView
+            android:id="@+id/picture_item_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:text="AUTOR"
+            android:layout_gravity="center_horizontal"/>
+
 
     </FrameLayout>
 
 
 
-    <TextView
-        android:id="@+id/picture_item_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="AUTOR"
-        android:gravity="center"/>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
 
 </LinearLayout>
+
