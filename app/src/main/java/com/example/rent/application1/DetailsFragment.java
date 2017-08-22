@@ -22,6 +22,8 @@ import butterknife.ButterKnife;
 import static com.example.rent.application1.models.Picture.getPhotoUrl;
 import static com.example.rent.application1.models.Picture.getThumbnailUrl;
 
+import butterknife.BindView;
+
 
 public class DetailsFragment extends DialogFragment {
 
