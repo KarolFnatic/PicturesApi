@@ -50,10 +50,11 @@ public class DetailsFragment extends DialogFragment {
         Picture test = getArguments().getParcelable("test");
         author.setText(test.getAuthor());
         Picasso.with(getContext())
-                .load(getPhotoUrl(test))
+                .load(getPhotoUrl(test, 0.01))
                 .into(image);
         return view;
     }
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
