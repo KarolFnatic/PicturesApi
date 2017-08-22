@@ -24,7 +24,7 @@ import static com.example.rent.application1.models.Picture.getThumbnailUrl;
 @AllArgsConstructor
 public class PictureListAdapter extends RecyclerView.Adapter<PictureListAdapter.PictureViewHolder> {
 
-    // TODO: 2017-08-21 OnClick in ViewHolder what will open DetailsFragment, also test out opening DetailsFragment
+    // TODO: 2017-08-21 Implement ViewPager what will open Fragment instead of DialogFragment
 
     private List<Picture> pictureList;
     private FragmentManager fragmentManager;
