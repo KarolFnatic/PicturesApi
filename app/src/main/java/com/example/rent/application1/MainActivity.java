@@ -19,6 +19,8 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -38,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
     private List<Picture> picturesList;
     private PictureListAdapter pictureListAdapter;
 
+    @Inject
+    Retrofit retrofit;
+
+
     @BindView(R.id.recyclerview)
     RecyclerView recyclerView;
 
@@ -51,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         prepareAdapter();
 
         getPicturesRxJava();
+
+        //zbieram aplikację, cast na MyApllication
+        ((MyApplication) getApplication()).getNetComponent().inject(this);
 
     }
 
