@@ -2,9 +2,11 @@ package com.example.rent.application1.module;
 
 import android.app.Application;
 
+import com.example.rent.application1.service.PicturesApi;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import javax.inject.Singleton;
 
@@ -20,7 +22,7 @@ public class NetModule {
     //klasa: CO chcemy wstrzykiwać
 
     Application application;
-    private String url = "www.abc.de"; //TODO: zmienić urla na chyba https://unsplash.it?
+    private String url = "https://unsplash.it"; //TODO: zmienić urla na chyba https://unsplash.it?
 
     //wstrzykuje kontekst aplikacji
     public NetModule(Application application) { //czy w parametrze "(..., String url)" ?
@@ -31,20 +33,20 @@ public class NetModule {
     //wstrzykuje kontekst retrofita (zaleznosci do korzystania z retrofita)
     @Provides
     @Singleton
-    Application provideApplication(){
+    Application provideApplication() {
         return application;
     }
 
     @Provides
     @Singleton
-    Cache provideOkhttpCache(Application application){
+    Cache provideOkhttpCache(Application application) {
         int cacheSize = 10 * 1024 * 1024;
         return new Cache(application.getCacheDir(), cacheSize);
     }
 
     @Provides
     @Singleton
-    OkHttpClient provideOkHttpClient(Cache cache){
+    OkHttpClient provideOkHttpClient(Cache cache) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.cache(cache);
         return builder.build();
@@ -52,7 +54,7 @@ public class NetModule {
 
     @Provides
     @Singleton
-    Gson provideGson(){
+    Gson provideGson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
         return gsonBuilder.create();
@@ -60,12 +62,18 @@ public class NetModule {
 
     @Provides
     @Singleton
-    Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient){
-        Retrofit retrofit = new Retrofit.Builder()
+    Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
+        return new Retrofit.Builder()
                 .baseUrl(url)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
                 .build();
-        return retrofit;
+    }
+
+    @Provides
+    @Singleton
+    PicturesApi providePicturesApi(Retrofit retrofit) {
+        return retrofit.create(PicturesApi.class);
     }
 }

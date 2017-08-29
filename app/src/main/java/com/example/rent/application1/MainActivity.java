@@ -1,12 +1,10 @@
 package com.example.rent.application1;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.rent.application1.adapters.PictureListAdapter;
@@ -14,7 +12,6 @@ import com.example.rent.application1.models.Picture;
 import com.example.rent.application1.service.PicturesApi;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,26 +20,20 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String BASE_URL = "https://unsplash.it";
-    private Retrofit retrofit;
-    private PicturesApi picturesApi;
     private List<Picture> picturesList;
     private PictureListAdapter pictureListAdapter;
 
     @Inject
-    Retrofit retrofit;
-
+    PicturesApi picturesApi;
 
     @BindView(R.id.recyclerview)
     RecyclerView recyclerView;
@@ -52,14 +43,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //zbieram aplikację, cast na MyApllication
+        ((MyApplication) getApplication()).getNetComponent().inject(this);
         ButterKnife.bind(this);
-        prepareRetrofit();
+//        prepareRetrofit();
         prepareAdapter();
 
         getPicturesRxJava();
 
-        //zbieram aplikację, cast na MyApllication
-        ((MyApplication) getApplication()).getNetComponent().inject(this);
 
     }
 
@@ -68,16 +59,6 @@ public class MainActivity extends AppCompatActivity {
         pictureListAdapter = new PictureListAdapter(picturesList, getSupportFragmentManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(pictureListAdapter);
-    }
-
-    private void prepareRetrofit() {
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(getGson()))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
-
-        picturesApi = retrofit.create(PicturesApi.class);
     }
 
     private void getPicturesRxJava() {
