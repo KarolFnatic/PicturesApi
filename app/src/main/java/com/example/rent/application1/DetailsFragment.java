@@ -1,16 +1,11 @@
 package com.example.rent.application1;
 
 
-import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.rent.application1.models.Picture;
@@ -21,12 +16,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.rent.application1.models.Picture.getPhotoUrl;
-import static com.example.rent.application1.models.Picture.getThumbnailUrl;
-
-import butterknife.BindView;
 
 
-public class DetailsFragment extends DialogFragment {
+public class DetailsFragment extends Fragment {
 
     @BindView(R.id.fragment_details_author)
     TextView author;
@@ -59,25 +51,25 @@ public class DetailsFragment extends DialogFragment {
     }
 
 
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
-        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        return dialog;
-    }
+//    @Override
+//    public Dialog onCreateDialog(Bundle savedInstanceState) {
+//        Dialog dialog = super.onCreateDialog(savedInstanceState);
+//        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+//        return dialog;
+//    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        setFullScreenStyle();
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        setFullScreenStyle();
+//    }
 
-    private void setFullScreenStyle() {
-        Dialog dialog = getDialog();
-        if (dialog != null) {
-            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        }
-    }
+//    private void setFullScreenStyle() {
+//        Dialog dialog = getDialog();
+//        if (dialog != null) {
+//            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+//            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        }
+//    }
 
 }

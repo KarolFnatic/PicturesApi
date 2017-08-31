@@ -1,7 +1,5 @@
 package com.example.rent.application1.adapters;
 
-import android.content.Intent;
-import android.os.Parcel;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -48,7 +46,7 @@ public class PictureListAdapter extends RecyclerView.Adapter<PictureListAdapter.
             @Override
             public void onClick(View view) {
                 DetailsFragment detailsFragment = DetailsFragment.newInstance(picture);
-                detailsFragment.show(fragmentManager,"");
+//                detailsFragment.show(fragmentManager,"");
             }
         });
 

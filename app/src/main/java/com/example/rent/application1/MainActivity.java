@@ -8,10 +8,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.rent.application1.adapters.PictureListAdapter;
+import com.example.rent.application1.adapters.PicturePagerAdapter;
 import com.example.rent.application1.models.Picture;
 import com.example.rent.application1.service.PicturesApi;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,21 +21,21 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String BASE_URL = "https://unsplash.it";
-    private List<Picture> picturesList;
+    public List<Picture> picturesList;
     private PictureListAdapter pictureListAdapter;
+
 
     @Inject
     PicturesApi picturesApi;
-
     @BindView(R.id.recyclerview)
     RecyclerView recyclerView;
+
 
 
     @Override
@@ -46,12 +45,8 @@ public class MainActivity extends AppCompatActivity {
         //zbieram aplikację, cast na MyApllication
         ((MyApplication) getApplication()).getNetComponent().inject(this);
         ButterKnife.bind(this);
-//        prepareRetrofit();
         prepareAdapter();
-
         getPicturesRxJava();
-
-
     }
 
     private void prepareAdapter() {
@@ -75,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onNext(@io.reactivex.annotations.NonNull List<Picture> pictures) {
                         Log.d("RxJava", "New pictures ! " + pictures.size());
                         picturesList.addAll(pictures);
+
                     }
 
                     @Override
@@ -87,20 +83,14 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("RxJava", "DONE!");
                         showToast("DONE!");
                         pictureListAdapter.notifyDataSetChanged();
+
                     }
                 });
-    }
-
-
-    @NonNull
-    private Gson getGson() {
-        return new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
-                .setLenient()
-                .create();
     }
 
     private void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
+
 }
+
