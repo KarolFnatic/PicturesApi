@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.rent.application1.DetailsFragment;
 import com.example.rent.application1.R;
 import com.example.rent.application1.models.Picture;
 import com.squareup.picasso.Picasso;
@@ -26,6 +25,7 @@ public class PictureListAdapter extends RecyclerView.Adapter<PictureListAdapter.
 
     private List<Picture> pictureList;
     private FragmentManager fragmentManager;
+    private View.OnClickListener onPictureItemClickListener;
 
     @Override
     public PictureViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -42,13 +42,7 @@ public class PictureListAdapter extends RecyclerView.Adapter<PictureListAdapter.
         Picasso.with(holder.icon.getContext())
                 .load(getThumbnailUrl(picture))
                 .into(holder.icon);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DetailsFragment detailsFragment = DetailsFragment.newInstance(picture);
-//                detailsFragment.show(fragmentManager,"");
-            }
-        });
+        holder.itemView.setOnClickListener(onPictureItemClickListener);
 
 
     }

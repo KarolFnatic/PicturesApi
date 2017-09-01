@@ -5,10 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.rent.application1.adapters.PictureListAdapter;
-import com.example.rent.application1.adapters.PicturePagerAdapter;
 import com.example.rent.application1.models.Picture;
 import com.example.rent.application1.service.PicturesApi;
 
@@ -27,7 +27,7 @@ import io.reactivex.schedulers.Schedulers;
 public class MainActivity extends AppCompatActivity {
 
     public static final String BASE_URL = "https://unsplash.it";
-    public List<Picture> picturesList;
+    public ArrayList<Picture> picturesList;
     private PictureListAdapter pictureListAdapter;
 
 
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     PicturesApi picturesApi;
     @BindView(R.id.recyclerview)
     RecyclerView recyclerView;
-
+    private ViewPagerFragment viewPagerFragment;
 
 
     @Override
@@ -51,7 +51,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void prepareAdapter() {
         picturesList = new ArrayList<>();
-        pictureListAdapter = new PictureListAdapter(picturesList, getSupportFragmentManager());
+        pictureListAdapter = new PictureListAdapter(picturesList, getSupportFragmentManager(), new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ViewPagerFragment viewPagerFragment = ViewPagerFragment.newInstance(picturesList);
+                viewPagerFragment.show(getSupportFragmentManager(), "");
+                Log.d("Teeest", "teeest");
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(pictureListAdapter);
     }
@@ -70,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onNext(@io.reactivex.annotations.NonNull List<Picture> pictures) {
                         Log.d("RxJava", "New pictures ! " + pictures.size());
                         picturesList.addAll(pictures);
-
                     }
 
                     @Override

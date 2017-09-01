@@ -29,7 +29,6 @@ public class PicturePagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         return DetailsFragment.newInstance(picturesList.get(position));
-
     }
 
     // Returns the page title for the top indicator
