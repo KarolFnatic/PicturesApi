@@ -87,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onComplete() {
-                        Log.d("RxJava", "DONE!");
-                        showToast("DONE!");
+                        Log.d("RxJava", "Pictures loaded!");
+                        showToast("Pictures loaded!");
                         pictureListAdapter.notifyDataSetChanged();
                     }
                 });
