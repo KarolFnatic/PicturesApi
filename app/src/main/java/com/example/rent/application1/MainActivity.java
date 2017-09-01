@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private PictureListAdapter pictureListAdapter;
 
 
+
     @Inject
     PicturesApi picturesApi;
     @BindView(R.id.recyclerview)
@@ -54,9 +55,9 @@ public class MainActivity extends AppCompatActivity {
         pictureListAdapter = new PictureListAdapter(picturesList, getSupportFragmentManager(), new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ViewPagerFragment viewPagerFragment = ViewPagerFragment.newInstance(picturesList);
+                int itemPosition = recyclerView.getChildLayoutPosition(view);
+                ViewPagerFragment viewPagerFragment = ViewPagerFragment.newInstance(picturesList, itemPosition);
                 viewPagerFragment.show(getSupportFragmentManager(), "");
-                Log.d("Teeest", "teeest");
             }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -89,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("RxJava", "DONE!");
                         showToast("DONE!");
                         pictureListAdapter.notifyDataSetChanged();
-
                     }
                 });
     }

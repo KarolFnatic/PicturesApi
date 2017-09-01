@@ -2,7 +2,7 @@ package com.example.rent.application1;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import static com.example.rent.application1.models.Picture.getPhotoUrl;
 
 
-public class DetailsFragment extends Fragment {
+public class DetailsFragment extends DialogFragment {
 
     @BindView(R.id.fragment_details_author)
     TextView author;
@@ -50,26 +50,5 @@ public class DetailsFragment extends Fragment {
         return view;
     }
 
-
-//    @Override
-//    public Dialog onCreateDialog(Bundle savedInstanceState) {
-//        Dialog dialog = super.onCreateDialog(savedInstanceState);
-//        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-//        return dialog;
-//    }
-
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        setFullScreenStyle();
-//    }
-
-//    private void setFullScreenStyle() {
-//        Dialog dialog = getDialog();
-//        if (dialog != null) {
-//            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-//            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//        }
-//    }
 
 }
