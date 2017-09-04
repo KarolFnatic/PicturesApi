@@ -73,13 +73,15 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onNext(@io.reactivex.annotations.NonNull List<Picture> pictures) {
+                    @NonNull
+                    public void onNext(List<Picture> pictures) {
                         Log.d("RxJava", "New pictures ! " + pictures.size());
                         picturesList.addAll(pictures);
                     }
 
                     @Override
-                    public void onError(@io.reactivex.annotations.NonNull Throwable e) {
+                    @NonNull
+                    public void onError(Throwable e) {
 
                     }
 

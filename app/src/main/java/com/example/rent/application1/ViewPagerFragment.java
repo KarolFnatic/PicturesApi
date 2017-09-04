@@ -20,13 +20,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ViewPagerFragment extends DialogFragment {
-    public static final String IMAGES_KEY = "images_key";
-    public static final String ITEM_POSITION_KEY = "itemposition_key";
+    private static final String IMAGES_KEY = "images_key";
+    private static final String ITEM_POSITION_KEY = "itemposition_key";
 
     @BindView(R.id.vpPager)
     ViewPager viewPager;
 
-    // newInstance constructor for creating fragment with arguments
     public static ViewPagerFragment newInstance(ArrayList<Picture> imagesList, int itemPosition) {
         ViewPagerFragment fragmentFirst = new ViewPagerFragment();
         Bundle args = new Bundle();
@@ -36,7 +35,6 @@ public class ViewPagerFragment extends DialogFragment {
         return fragmentFirst;
     }
 
-    // Inflate the view for the fragment based on layout XML
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

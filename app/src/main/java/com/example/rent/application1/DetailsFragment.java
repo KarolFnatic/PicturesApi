@@ -43,7 +43,7 @@ public class DetailsFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_details, container, false);
         ButterKnife.bind(this, view);
         Picture picture = getArguments().getParcelable(PICTURE_DATA);
-        details_textView.setText(String.format("%s,%s,%dx%d", picture.getId(), picture.getAuthor(), picture.getHeight(), picture.getWidth()));
+        details_textView.setText(String.format("%s, %s, %dx%d", picture.getId(), picture.getAuthor(), picture.getHeight(), picture.getWidth()));
         Picasso.with(getContext())
                 .load(getPhotoUrl(picture, PICTURE_SCALE))
                 .into(details_image);

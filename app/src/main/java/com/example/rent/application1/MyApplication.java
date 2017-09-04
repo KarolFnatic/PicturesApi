@@ -19,7 +19,6 @@ public class MyApplication extends Application {
                 .build();
     }
 
-    //po co to tak naprawde??
     public NetComponent getNetComponent(){
         return netComponent;
     }
