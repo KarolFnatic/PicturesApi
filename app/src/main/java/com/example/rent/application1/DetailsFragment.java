@@ -20,35 +20,33 @@ import static com.example.rent.application1.models.Picture.getPhotoUrl;
 
 public class DetailsFragment extends DialogFragment {
 
+    public static final String PICTURE_DATA = "PICTURE_DATA";
+
     @BindView(R.id.fragment_details_author)
     TextView author;
 
     @BindView(R.id.fragment_details_image)
     PhotoView image;
 
-
     public static DetailsFragment newInstance(Picture picture) {
         Bundle args = new Bundle();
-        args.putParcelable("test", picture);
+        args.putParcelable(PICTURE_DATA, picture);
         DetailsFragment fragment = new DetailsFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_details, container, false);
-        // Inflate the layout for this fragment
         ButterKnife.bind(this, view);
-        Picture test = getArguments().getParcelable("test");
+        Picture test = getArguments().getParcelable(PICTURE_DATA);
         author.setText(test.getId() + ", " + test.getAuthor() + ", " + test.getHeight() + "x" + test.getWidth());
         Picasso.with(getContext())
                 .load(getPhotoUrl(test, 0.5f))
                 .into(image);
         return view;
     }
-
 
 }
