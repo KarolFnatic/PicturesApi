@@ -21,29 +21,27 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String BASE_URL = "https://unsplash.it";
-    public ArrayList<Picture> picturesList;
+    private static final ArrayList<Picture> picturesList = new ArrayList<>();
     private PictureListAdapter pictureListAdapter;
-
-
+    private ViewPagerFragment viewPagerFragment;
 
     @Inject
     PicturesApi picturesApi;
+
     @BindView(R.id.recyclerview)
     RecyclerView recyclerView;
-    private ViewPagerFragment viewPagerFragment;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //zbieram aplikację, cast na MyApllication
         ((MyApplication) getApplication()).getNetComponent().inject(this);
         ButterKnife.bind(this);
         prepareAdapter();
@@ -51,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void prepareAdapter() {
-        picturesList = new ArrayList<>();
         pictureListAdapter = new PictureListAdapter(picturesList, getSupportFragmentManager(), new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<Picture>>() {
                     @Override
-                    public void onSubscribe(@io.reactivex.annotations.NonNull Disposable d) {
+                    @NonNull
+                    public void onSubscribe(Disposable d) {
 
                     }
 

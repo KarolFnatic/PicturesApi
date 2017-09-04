@@ -19,18 +19,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class NetModule {
-    //klasa: CO chcemy wstrzykiwać
 
     Application application;
-    private String url = "https://unsplash.it"; //TODO: zmienić urla na chyba https://unsplash.it?
+    private String url = "https://unsplash.it";
 
-    //wstrzykuje kontekst aplikacji
-    public NetModule(Application application) { //czy w parametrze "(..., String url)" ?
+    public NetModule(Application application) {
         this.application = application;
-//        this.url = url;
     }
 
-    //wstrzykuje kontekst retrofita (zaleznosci do korzystania z retrofita)
     @Provides
     @Singleton
     Application provideApplication() {

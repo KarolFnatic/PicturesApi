@@ -7,10 +7,9 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
-//klasa: W CO chcemy wstrzykiwać
 @Singleton
 @Component(modules = NetModule.class)
 public interface NetComponent {
-    void inject(MainActivity mainActivity); //wstrzykujemy do MainActivity
+    void inject(MainActivity mainActivity);
 
 }
