@@ -21,6 +21,7 @@ import static com.example.rent.application1.models.Picture.getPhotoUrl;
 public class DetailsFragment extends DialogFragment {
 
     public static final String PICTURE_DATA = "PICTURE_DATA";
+    public static final float PICTURE_SCALE = 0.5f;
 
     @BindView(R.id.fragment_details_author)
     TextView details_textView;
@@ -44,7 +45,7 @@ public class DetailsFragment extends DialogFragment {
         Picture picture = getArguments().getParcelable(PICTURE_DATA);
         details_textView.setText(String.format("%s,%s,%dx%d", picture.getId(), picture.getAuthor(), picture.getHeight(), picture.getWidth()));
         Picasso.with(getContext())
-                .load(getPhotoUrl(picture, 0.5f))
+                .load(getPhotoUrl(picture, PICTURE_SCALE))
                 .into(details_image);
         return view;
     }
