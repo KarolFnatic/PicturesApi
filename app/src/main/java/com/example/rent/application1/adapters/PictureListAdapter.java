@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import lombok.AllArgsConstructor;
 
 import static com.example.rent.application1.models.Picture.getThumbnailUrl;
@@ -35,15 +37,11 @@ public class PictureListAdapter extends RecyclerView.Adapter<PictureListAdapter.
     @Override
     public void onBindViewHolder(PictureViewHolder holder, int position) {
         final Picture picture = pictureList.get(position);
-
-
         holder.author.setText(picture.getAuthor());
         Picasso.with(holder.icon.getContext())
                 .load(getThumbnailUrl(picture))
                 .into(holder.icon);
         holder.itemView.setOnClickListener(onPictureItemClickListener);
-
-
     }
 
     @Override
@@ -53,17 +51,18 @@ public class PictureListAdapter extends RecyclerView.Adapter<PictureListAdapter.
 
     static class PictureViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.picture_item_imageView)
         ImageView icon;
+
+        @BindView(R.id.picture_item_author)
         TextView author;
 
         public PictureViewHolder(View itemView) {
             super(itemView);
-
-            icon = itemView.findViewById(R.id.picture_item_imageView);
-            author = itemView.findViewById(R.id.picture_item_author);
+            ButterKnife.bind(this, itemView);
 
         }
 
-
     }
+
 }
