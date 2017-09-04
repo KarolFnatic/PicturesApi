@@ -11,29 +11,22 @@ import java.util.List;
 
 
 public class PicturePagerAdapter extends FragmentStatePagerAdapter {
-    private final List<Picture> picturesList;
 
+    private final List<Picture> picturesList;
 
     public PicturePagerAdapter(FragmentManager fragmentManager, List<Picture> picturesList) {
         super(fragmentManager);
         this.picturesList = picturesList;
     }
 
-    // Returns total number of pages
     @Override
     public int getCount() {
         return picturesList.size();
     }
 
-    // Returns the fragment to display for that page
     @Override
     public Fragment getItem(int position) {
         return DetailsFragment.newInstance(picturesList.get(position));
     }
 
-    // Returns the page title for the top indicator
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return "Page " + position;
-    }
 }
