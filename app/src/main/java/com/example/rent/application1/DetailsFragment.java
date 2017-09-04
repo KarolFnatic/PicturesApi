@@ -23,10 +23,10 @@ public class DetailsFragment extends DialogFragment {
     public static final String PICTURE_DATA = "PICTURE_DATA";
 
     @BindView(R.id.fragment_details_author)
-    TextView author;
+    TextView details_textView;
 
     @BindView(R.id.fragment_details_image)
-    PhotoView image;
+    PhotoView details_image;
 
     public static DetailsFragment newInstance(Picture picture) {
         Bundle args = new Bundle();
@@ -41,11 +41,11 @@ public class DetailsFragment extends DialogFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_details, container, false);
         ButterKnife.bind(this, view);
-        Picture test = getArguments().getParcelable(PICTURE_DATA);
-        author.setText(test.getId() + ", " + test.getAuthor() + ", " + test.getHeight() + "x" + test.getWidth());
+        Picture picture = getArguments().getParcelable(PICTURE_DATA);
+        details_textView.setText(String.format("%s,%s,%dx%d", picture.getId(), picture.getAuthor(), picture.getHeight(), picture.getWidth()));
         Picasso.with(getContext())
-                .load(getPhotoUrl(test, 0.5f))
-                .into(image);
+                .load(getPhotoUrl(picture, 0.5f))
+                .into(details_image);
         return view;
     }
 
