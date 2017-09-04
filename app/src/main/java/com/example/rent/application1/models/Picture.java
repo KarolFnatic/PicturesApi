@@ -6,7 +6,6 @@ import android.os.Parcelable;
 
 public class Picture implements Parcelable{
 
-
     private String filename;
     private String author;
     private int height;

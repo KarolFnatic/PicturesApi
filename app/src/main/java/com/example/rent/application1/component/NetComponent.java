@@ -11,5 +11,4 @@ import dagger.Component;
 @Component(modules = NetModule.class)
 public interface NetComponent {
     void inject(MainActivity mainActivity);
-
 }

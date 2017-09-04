@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetModule {
 
     Application application;
-    private String url = "https://unsplash.it";
+    private static final String BASE_URL = "https://unsplash.it";
 
     public NetModule(Application application) {
         this.application = application;
@@ -60,7 +60,7 @@ public class NetModule {
     @Singleton
     Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
-                .baseUrl(url)
+                .baseUrl(BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
