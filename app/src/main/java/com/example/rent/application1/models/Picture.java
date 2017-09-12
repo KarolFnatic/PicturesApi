@@ -4,6 +4,9 @@ import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import lombok.Getter;
+
+@Getter
 public class Picture implements Parcelable{
 
     private String filename;
@@ -32,52 +35,12 @@ public class Picture implements Parcelable{
         }
     };
 
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
     public static String getThumbnailUrl(Picture picture) {
         return "https://unsplash.it/300/200/?image=" + picture.getId();
     }
 
     public static String getPhotoUrl(Picture picture, float scale) {
         return "https://unsplash.it/"+ picture.getWidth() * scale + "/" + picture.getWidth() * scale + "/?image=" + picture.getId();
-    }
-
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     @Override
