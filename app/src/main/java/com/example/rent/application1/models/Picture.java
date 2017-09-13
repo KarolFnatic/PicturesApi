@@ -7,8 +7,10 @@ import android.os.Parcelable;
 import lombok.Getter;
 
 @Getter
-public class Picture implements Parcelable{
+public class Picture implements Parcelable {
 
+    private static final int WIDTH = 300;
+    private static final int HEIGHT = 200;
     private String filename;
     private String author;
     private int height;
@@ -36,11 +38,11 @@ public class Picture implements Parcelable{
     };
 
     public static String getThumbnailUrl(Picture picture) {
-        return "https://unsplash.it/300/200/?image=" + picture.getId();
+        return String.format("https://unsplash.it/%d/%d/?image=%d", WIDTH, HEIGHT, picture.getId());
     }
 
     public static String getPhotoUrl(Picture picture, float scale) {
-        return "https://unsplash.it/"+ picture.getWidth() * scale + "/" + picture.getWidth() * scale + "/?image=" + picture.getId();
+        return String.format("https://unsplash.it/%f/%f/?image=%d", picture.getWidth() * scale, picture.getHeight() * scale, picture.getId());
     }
 
     @Override
